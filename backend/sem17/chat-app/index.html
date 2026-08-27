@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat WebSockets</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Sala de Chat</h2>
+        <input type="text" id="nome" placeholder="Seu nome">
+        <input type="text" id="mensagem" placeholder="Digite sua mensagem...">
+        <button onclick="enviarMensagem()">Enviar</button>
+        
+        <div id="historico"></div>
+    </div>
+
+    <script>
+        // Conecta ao servidor local
+        const ws = new WebSocket('ws://localhost:8081');
+
+        ws.onmessage = (event) => {
+            const historico = document.getElementById('historico');
+            const p = document.createElement('p');
+            p.innerText = event.data;
+            historico.appendChild(p);
+            // Auto-scroll para a última mensagem
+            historico.scrollTop = historico.scrollHeight; 
+        };
+
+        function enviarMensagem() {
+            const nomeInput = document.getElementById('nome');
+            const msgInput = document.getElementById('mensagem');
+            
+            const nome = nomeInput.value.trim() || 'Anônimo';
+            const mensagem = msgInput.value.trim();
+            
+            if (mensagem === '') return;
+
+            // Formata a string que será enviada
+            const textoCompleto = `[${nome}]: ${mensagem}`;
+            
+            ws.send(textoCompleto);
+            msgInput.value = ''; // Limpa o campo de mensagem
+        }
+        
+        // Permite enviar pressionando a tecla Enter
+        document.getElementById('mensagem').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') enviarMensagem();
+        });
+    </script>
+</body>
+</html>

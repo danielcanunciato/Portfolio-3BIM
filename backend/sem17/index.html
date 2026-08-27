@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Clima</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- CDN do Axios -->
+    <script src="https://jsdelivr.net"></script>
+
+</head>
+<body>
+    <h2>Consulta Climática</h2>
+    <div class="campo">
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" placeholder="Ex: São Paulo">
+    </div>
+    <div class="campo">
+        <label for="metodo">Método:</label>
+        <select id="metodo">
+            <option value="fetch">Fetch API</option>
+            <option value="axios">Axios</option>
+        </select>
+    </div>
+    <button onclick="getWeather()">Consultar Clima</button>
+
+    <div id="resultado"></div>
+    <div id="erro"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

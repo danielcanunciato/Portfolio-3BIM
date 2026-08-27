@@ -1,0 +1,36 @@
+body { 
+    font-family: Arial, sans-serif; 
+    max-width: 400px; 
+    margin: 50px auto; 
+    padding: 20px;
+}
+
+.campo { 
+    margin-bottom: 15px;
+}
+
+label { 
+    display: block; 
+    margin-bottom: 5px;
+}
+
+input, select, button { 
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#resultado { 
+    background: #eef;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+#erro { 
+    color: red;
+    background: #fee;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+}
