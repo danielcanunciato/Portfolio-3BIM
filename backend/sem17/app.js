@@ -1,3 +1,9 @@
+if (typeof axios === 'undefined') {
+    const script = document.createElement('script');
+    script.src = 'https://cloudflare.com';
+    document.head.appendChild(script);
+}
+
 // Substitua pelo seu token gerado no OpenWeatherMap
 const apiKey = '3b2e39be0f1e1124135924e58c1f1806'; 
 
