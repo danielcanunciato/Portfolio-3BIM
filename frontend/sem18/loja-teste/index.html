@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja Teste</title>
+</head>
+<body>
+
+    <h1>Loja Gamer</h1>
+    <h2>Produto: Teclado Gamer</h2>
+    <p>Preço: R$ 100</p>
+    <p>Quantidade: 2</p>
+
+    <button onclick="mostrarTotal()">Calcular compra</button>
+    <p id="resultado"></p>
+
+    <script src="funcoes.js"></script>
+    <script>
+        function mostrarTotal() {
+            const total = calcularTotal(100, 2);
+            document.getElementById("resultado").innerText =
+                "Total: R$ " + total;
+        }
+    </script>
+
+</body>
+</html>

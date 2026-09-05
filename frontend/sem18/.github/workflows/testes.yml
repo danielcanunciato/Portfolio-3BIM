@@ -1,0 +1,25 @@
+name: Testes do Projeto
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Executar testes
+        run: node node_modules/jest/bin/jest.js
