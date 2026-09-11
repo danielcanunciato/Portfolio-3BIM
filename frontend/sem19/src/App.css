@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #eeeeee;
+}
+
+.container {
+  width: 90%;
+  margin: 30px auto;
+}
+
+h1 {
+  text-align: center;
+}
+h1::before {
+  content: "✓ ";
+}
+
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+  transition: .25s ease;
+  border-radius: 0;
+  border: 2px solid black;
+}
+button:hover {
+    background-color: #cccccc;
+    border-radius: 15px;
+    transform: scale(1.05);
+    border: 2px dotted black;
+  }
+
+.lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tarefa {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  animation: onTaskCreate 1s linear;
+
+  & button {
+    margin-left: 10px;
+  }
+}
+
+.concluida {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+
+@keyframes onTaskCreate {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 800px;
+  }
+
+  .formulario {
+    flex-direction: row;
+  }
+
+  .formulario input {
+    flex: 1;
+  }
+
+  .lista {
+    grid-template-columns: 1fr 1fr;
+  }
+}

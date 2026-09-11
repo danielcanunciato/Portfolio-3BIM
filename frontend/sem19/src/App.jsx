@@ -1,0 +1,49 @@
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { adicionarTarefa, removerTarefa, concluirTarefa } from './utils/tarefasSlice';
+import './App.css';
+
+function App() {
+  const [texto, setTexto] = useState('');
+  const dispatch = useDispatch();
+  const tarefas = useSelector(state => state.tarefas.lista);
+
+  function adicionar() {
+    if (texto.trim() !== '') {
+      dispatch(adicionarTarefa(texto));
+      setTexto('');
+    }
+  }
+
+  return (
+    <div className="container">
+      <h1>Minha Lista de Tarefas</h1>
+
+      <div className="formulario">
+        <input
+          type="text"
+          placeholder="Digite uma tarefa"
+          value={texto}
+          onChange={(e) => setTexto(e.target.value)}
+        />
+        <button onClick={adicionar}>Adicionar</button>
+      </div>
+
+      <div className="lista">
+        {tarefas.map((tarefa) => (
+          <div className={`tarefa ${tarefa.concluida ? "concluida" : ""}`} key={tarefa.id}>
+            <p>{tarefa.titulo}</p>
+            <button onClick={() => dispatch(removerTarefa(tarefa.id))}>
+              Remover
+            </button>
+            <button onClick={() => dispatch(concluirTarefa(tarefa.id))}>
+              {tarefa.concluida ? 'Desmarcar' : 'Concluir'}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
